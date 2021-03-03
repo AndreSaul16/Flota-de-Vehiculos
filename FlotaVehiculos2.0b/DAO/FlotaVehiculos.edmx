@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DepCarga">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="int" Nullable="false" />
+          <Property Name="cargaMax" Type="int" Nullable="false" />
+          <Property Name="vehiculoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DepTransporte">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="int" Nullable="false" />
+          <Property Name="maxPersonas" Type="int" Nullable="false" />
+          <Property Name="vehiculoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehiculos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="marca" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="modelo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="matricula" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="color" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DepCarga_Vehiculos">
+          <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="1" />
+          <End Role="DepCarga" Type="Self.DepCarga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DepCarga">
+              <PropertyRef Name="vehiculoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepTransporte_Vehiculos">
+          <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="1" />
+          <End Role="DepTransporte" Type="Self.DepTransporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DepTransporte">
+              <PropertyRef Name="vehiculoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="DepCarga" EntityType="Self.DepCarga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepTransporte" EntityType="Self.DepTransporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DepCarga_Vehiculos" Association="Self.FK_DepCarga_Vehiculos">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="DepCarga" EntitySet="DepCarga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepTransporte_Vehiculos" Association="Self.FK_DepTransporte_Vehiculos">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="DepTransporte" EntitySet="DepTransporte" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FlotaVehiculosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DepCarga" EntityType="Model.DepCarga" />
+          <EntitySet Name="DepTransporte" EntityType="Model.DepTransporte" />
+          <EntitySet Name="Vehiculos" EntityType="Model.Vehiculos" />
+          <AssociationSet Name="FK_DepCarga_Vehiculos" Association="Model.FK_DepCarga_Vehiculos">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="DepCarga" EntitySet="DepCarga" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepTransporte_Vehiculos" Association="Model.FK_DepTransporte_Vehiculos">
+            <End Role="Vehiculos" EntitySet="Vehiculos" />
+            <End Role="DepTransporte" EntitySet="DepTransporte" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DepCarga">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="Int32" Nullable="false" />
+          <Property Name="cargaMax" Type="Int32" Nullable="false" />
+          <Property Name="vehiculoID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vehiculos" Relationship="Model.FK_DepCarga_Vehiculos" FromRole="DepCarga" ToRole="Vehiculos" />
+        </EntityType>
+        <EntityType Name="DepTransporte">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="Int32" Nullable="false" />
+          <Property Name="maxPersonas" Type="Int32" Nullable="false" />
+          <Property Name="vehiculoID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vehiculos" Relationship="Model.FK_DepTransporte_Vehiculos" FromRole="DepTransporte" ToRole="Vehiculos" />
+        </EntityType>
+        <EntityType Name="Vehiculos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="matricula" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="color" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="DepCarga" Relationship="Model.FK_DepCarga_Vehiculos" FromRole="Vehiculos" ToRole="DepCarga" />
+          <NavigationProperty Name="DepTransporte" Relationship="Model.FK_DepTransporte_Vehiculos" FromRole="Vehiculos" ToRole="DepTransporte" />
+        </EntityType>
+        <Association Name="FK_DepCarga_Vehiculos">
+          <End Type="Model.Vehiculos" Role="Vehiculos" Multiplicity="1" />
+          <End Type="Model.DepCarga" Role="DepCarga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DepCarga">
+              <PropertyRef Name="vehiculoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepTransporte_Vehiculos">
+          <End Type="Model.Vehiculos" Role="Vehiculos" Multiplicity="1" />
+          <End Type="Model.DepTransporte" Role="DepTransporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DepTransporte">
+              <PropertyRef Name="vehiculoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="FlotaVehiculosEntities">
+          <EntitySetMapping Name="DepCarga">
+            <EntityTypeMapping TypeName="Model.DepCarga">
+              <MappingFragment StoreEntitySet="DepCarga">
+                <ScalarProperty Name="vehiculoID" ColumnName="vehiculoID" />
+                <ScalarProperty Name="cargaMax" ColumnName="cargaMax" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepTransporte">
+            <EntityTypeMapping TypeName="Model.DepTransporte">
+              <MappingFragment StoreEntitySet="DepTransporte">
+                <ScalarProperty Name="vehiculoID" ColumnName="vehiculoID" />
+                <ScalarProperty Name="maxPersonas" ColumnName="maxPersonas" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehiculos">
+            <EntityTypeMapping TypeName="Model.Vehiculos">
+              <MappingFragment StoreEntitySet="Vehiculos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
