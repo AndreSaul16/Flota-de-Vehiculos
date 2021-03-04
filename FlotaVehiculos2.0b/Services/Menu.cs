@@ -100,11 +100,12 @@ namespace FlotaVehiculos2._0b.Services
                         Console.WriteLine("------------------------------------------------");
                         Console.WriteLine();
                         Console.WriteLine();
-                        Console.WriteLine("1 - Fitlrar por marca");
-                        Console.WriteLine("2 - Filtrar por modelo");
-                        Console.WriteLine("3 - Filtrar por color");
-                        Console.WriteLine("4 - Filtrar por capacidad de carga");
-                        Console.WriteLine("5 - Filtrar por tipo (camion o remolque)");
+                        Console.WriteLine("1 - Filtrar por ID");
+                        Console.WriteLine("2 - Fitlrar por marca");
+                        Console.WriteLine("3 - Filtrar por modelo");
+                        Console.WriteLine("4 - Filtrar por color");
+                        Console.WriteLine("5 - Filtrar por capacidad de carga");
+                        Console.WriteLine("6 - Filtrar por tipo (camion o remolque)");
                         Console.WriteLine();
                         Console.Write("Pulsa el numero correspondiente para seleccionar una opcion: ");
                         string filter = Console.ReadLine();

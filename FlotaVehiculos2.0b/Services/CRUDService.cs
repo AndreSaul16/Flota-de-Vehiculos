@@ -562,8 +562,30 @@ namespace FlotaVehiculos2._0b.Services
             int contador;
             switch (option)
             {
-                //FILTRAR POR MARCA
+                //FILTRAR POR ID
                 case "1":
+                    contador = 0;
+                    Console.WriteLine("¿Que ID deseas buscar?");
+                    Console.WriteLine();
+                    Console.Write("---> ");
+                    int ID = int.Parse(Console.ReadLine());
+
+
+                    listaDeVehiculos.ForEach(delegate (Vehiculo i)
+                    {
+                        if (i.ID == ID && i is DtoCarga)
+                        {
+
+                            contador++;
+                            Console.WriteLine($"Marca: {i.marca} \nModelo: {i.modelo} \nMatricula: {i.matricula} \nColor: {i.color} \nID: {i.ID} \nMax Carga: {((DtoCarga)i).capacidadKG}");
+                            Console.WriteLine();
+
+                        }
+                    });
+                    Console.WriteLine($"Se encontraron {contador} resultados que coinciden con tu busqueda.");
+                    break;
+                //FILTRAR POR MARCA
+                case "2":
                     contador = 0;
                     Console.WriteLine("¿Que marca deseas buscar?");
                     Console.WriteLine();
@@ -586,7 +608,7 @@ namespace FlotaVehiculos2._0b.Services
                     break;
 
                 //FILTRAR POR MODELO
-                case "2":
+                case "3":
                     contador = 0;
                     Console.WriteLine("¿Que modelo deseas buscar?");
                     Console.WriteLine();
@@ -608,7 +630,7 @@ namespace FlotaVehiculos2._0b.Services
                     break;
 
                 //FILTRAR POR COLOR
-                case "3":
+                case "4":
                     contador = 0;
                     Console.WriteLine("¿Que color deseas buscar?");
                     Console.WriteLine();
@@ -630,7 +652,7 @@ namespace FlotaVehiculos2._0b.Services
                     break;
 
                 //FILTRAR POR CAPACIDAD DE CARGA
-                case "4":
+                case "5":
                     contador = 0;
                     Console.WriteLine("¿Que capacidad deseas buscar?");
                     Console.WriteLine();
@@ -652,7 +674,7 @@ namespace FlotaVehiculos2._0b.Services
                     Console.WriteLine($"Se encontraron {contador} resultados que coinciden con tu busqueda.");
                     break;
                 //FILTRAR POR TIPO DE VEHICULO
-                case "5":
+                case "6":
                     contador = 0;
                     Console.WriteLine("¿Que tipo de vehiculo deseas buscar?");
                     Console.WriteLine("Escribe 'camion' o escribe 'remolque'>>");
@@ -693,8 +715,30 @@ namespace FlotaVehiculos2._0b.Services
             int contador;
             switch (opcion)
             {
-                //FILTRAR POR MARCA
+                //FILTRAR POR ID
                 case "1":
+                    contador = 0;
+                    Console.WriteLine("¿Que ID deseas buscar?");
+                    Console.WriteLine();
+                    Console.Write("---> ");
+                    int ID = int.Parse(Console.ReadLine());
+
+
+                    listaDeVehiculos.ForEach(delegate (Vehiculo i)
+                    {
+                        if (i.ID == ID && i is DtoTransporte)
+                        {
+
+                            contador++;
+                            Console.WriteLine($"Marca: {i.marca} \nModelo: {i.modelo} \nMatricula: {i.matricula} \nColor: {i.color} \nID: {i.ID} \nMax Carga: {((DtoTransporte)i).capacidadDePersonas}");
+                            Console.WriteLine();
+
+                        }
+                    });
+                    Console.WriteLine($"Se encontraron {contador} resultados que coinciden con tu busqueda.");
+                    break;
+                //FILTRAR POR MARCA
+                case "2":
                     contador = 0;
                     Console.WriteLine("¿Que marca deseas buscar?");
                     Console.WriteLine();
@@ -716,7 +760,7 @@ namespace FlotaVehiculos2._0b.Services
                     break;
 
                 //FILTRAR POR MODELO
-                case "2":
+                case "3":
                     contador = 0;
                     Console.WriteLine("¿Que modelo deseas buscar?");
                     Console.WriteLine();
@@ -738,7 +782,7 @@ namespace FlotaVehiculos2._0b.Services
                     break;
 
                 //FILTRAR POR COLOR
-                case "3":
+                case "4":
                     contador = 0;
                     Console.WriteLine("¿Que color deseas buscar?");
                     Console.WriteLine();
@@ -760,7 +804,7 @@ namespace FlotaVehiculos2._0b.Services
                     break;
 
                 //FILTRAR POR CAPACIDAD DE TRANSPORTE
-                case "4":
+                case "5":
                     contador = 0;
                     Console.WriteLine("¿Que capacidad deseas buscar?");
                     Console.WriteLine();
@@ -782,7 +826,7 @@ namespace FlotaVehiculos2._0b.Services
                     Console.WriteLine($"Se encontraron {contador} resultados que coinciden con tu busqueda.");
                     break;
                 //FILTRAR POR TIPO DE VEHICULO
-                case "5":
+                case "6":
                     contador = 0;
                     Console.WriteLine("¿Que tipo de vehiculo deseas buscar?");
                     Console.WriteLine();
